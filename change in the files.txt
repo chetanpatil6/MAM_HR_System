@@ -1,0 +1,8 @@
+change in the files
+Date : 27-9-2015
+
+
+1.Notice: Undefined index: empl_no in C:\wamp\www\project_sane\MAM_HR_System\controller\add_attendance.php on line 6
+
+  
+2.Notice: Undefined variable: recvstatus in C:\wamp\www\project_sane\MAM_HR_System\view\update_recovery.php on line 321.

@@ -1,0 +1,130 @@
+<?php include('../model/Model.php');
+
+//$count=0;
+
+$emp_no=$_GET['id1'];
+$selected_month=$_GET['id2'];
+$from=$_GET['id3'];
+$to=$_GET['id4'];
+
+/*$frm_emp_no=$_GET['id3'];
+$to_emp_no=$_GET['id4'];
+$frm_grade=$_GET['id5'];*/
+//"select * from empl_master,comp_details where comp_details.type_of_sep='' and comp_details.grant_type!='Grantable' and empl_master.employee_no=comp_details.employee_no order by empl_master.employee_no"
+  $query="select * from  empl_master where ";
+  
+  if($emp_no=='select')
+  {
+    $query=$query." 1";
+  }
+  else
+  {
+      $query=$query." employee_no='$emp_no' and 1";
+  }  
+    
+  $i = 1;     	
+	 
+  $sql_emp=mysql_query($query);
+  while($res_employee_no=mysql_fetch_assoc($sql_emp))
+  {	
+    $sq_comp_details = mysql_query("select employee_no from comp_details where employee_no='$res_employee_no[employee_no]' and (type_of_sep='' and grant_type!='Grantable')");
+   if($r_comp_details = mysql_fetch_assoc($sq_comp_details))
+   {
+	$total_unpaid_leaves = 0;
+	$absent_day = 0;
+	
+	list($year11,$month11) = preg_split('[-]', $selected_month);
+	
+	
+	//echo "HERE   month_leave attendance".$selected_month;
+	$num = cal_days_in_month(CAL_GREGORIAN,$month11, $year11) ;
+	$sq_emp_leave_mngt = mysql_query("select * from month_attendance where employee_no='$res_employee_no[employee_no]' and month='$selected_month'");
+	//if(mysql_num_rows($sq_emp_leave_mngt)==0)
+	if(1)
+	{		
+		$date = date('Y-m-d');
+		list($year,$month) = preg_split('[-]', $selected_month);		
+	//echo " month ".$month. "<br>";
+	
+		//$pre_month = $month - 1;
+			if ($month > 1)
+			{
+				 $pre_month = $month - 1;
+				 $prev_year = $year;
+			}
+			else
+			{
+				$pre_month = 12;
+				$prev_year = $year-1;
+			}
+		//echo " pre_month ".$pre_month. "<br>";
+		
+		//$prev_date = "$year-$pre_month-26";
+			if ($pre_month <10)
+			{
+				$prev_date = "$prev_year-0$pre_month-26";
+			}
+			else
+			{
+				$prev_date = "$prev_year-$pre_month-26";
+			 }
+		$curr_date = "$year-$month-25";
+		
+		//echo " prev_date ".$prev_date. "<br>";
+		//echo " curr_date ".$curr_date. "<br>";
+		
+		$total_paid_leaves = 0;
+		$sq_total_leaves = mysql_query("select leave_days from leaves_transaction where employee_no='$res_employee_no[employee_no]' and (for_date>='$prev_date' and for_date<='$curr_date') and trans_type='LA'");
+		while($res_total_leaves = mysql_fetch_assoc($sq_total_leaves))
+		{		
+			$total_paid_leaves = $total_paid_leaves + $res_total_leaves['leave_days'];
+		}
+		
+		
+		$total_paid_leaves_cancelled = 0;
+		
+		$sq_total_leaves = mysql_query("select leave_days from leaves_transaction where employee_no='$res_employee_no[employee_no]' and (for_date>='$prev_date' and for_date<='$curr_date') and trans_type='LC'");
+		while($res_total_leaves = mysql_fetch_assoc($sq_total_leaves))
+		{		
+			$total_paid_leaves_cancelled = $total_paid_leaves_cancelled + $res_total_leaves['leave_days'];
+			
+			
+		}
+		
+		$total_paid_leaves = $total_paid_leaves - $total_paid_leaves_cancelled;
+		
+		
+		$res_no_days = mysql_fetch_assoc(mysql_query("select no_days from month_control where month_active='Y'"));
+		
+		$encashment_days=0;
+		if($month == '03')
+		{
+			$sq_encashment=mysql_query("select * from leave_encashment where employee_no='$res_employee_no[employee_no]' and (created_date>='$year11-03-01' and created_date<='$year11-03-31')");
+			if($row_encashment=mysql_fetch_array($sq_encashment))
+			{
+			 $encashment_days=$row_encashment['total_el'];
+			}
+		}
+		echo '<tr><td style="display:none">'.'<input type="text" name="txt_emp_no'.$i.'" id="txt_emp_no'.$i.'" value="'.$res_employee_no['employee_no'].'" size="8"  /></td>
+		<td><input type="text" name="txt_emp_no'.$i.'" id="txt_emp_no'.$i.'" value="'.$res_employee_no['first_name'].' '.$res_employee_no['middle_name'].' '.$res_employee_no['last_name'].'" size="25" title="'.$res_employee_no['first_name'].' '.$res_employee_no['middle_name'].' '.$res_employee_no['last_name'].'" disabled="disabled" /></td>
+		<td><input type="text" name="txt_leave_month'.$i.'" id="txt_leave_month'.$i.'" value="'.$selected_month.'" size="4" title="'.$selected_month.'" disabled="disabled"  /></td><td><input type="text" name="txt_day_in_month'.$i.'" id="txt_day_in_month'.$i.'" size="2"   title="Days In Month" disabled="disabled"  value="'.$num.'"/></td>
+		<td   title="Weekly Off"><input type="text" name="txt_weekly_off'.$i.'" id="txt_weekly_off'.$i.'" size="8" onkeyup="calculate_days();" /></td>
+		<td   title="Working Days"><input type="text" name="txt_working_days'.$i.'" id="txt_working_days'.$i.'" size="2" disabled="disabled" /></td>
+		<td   title="Present Days"><input type="text" name="txt_present_days'.$i.'" id="txt_present_days'.$i.'" size="2" disabled="disabled"/></td>
+		<td   title="Paid Leaves"><input type="text" name="txt_paid_leaves'.$i.'" id="txt_paid_leaves'.$i.'" size="2" disabled="disabled" value="'.$total_paid_leaves.'" /></td>
+		<td   title="Unpaid Leaves"><input type="text" name="txt_unpaid_leaves'.$i.'" id="txt_unpaid_leaves'.$i.'" size="2" onkeyup="interger_validation();calculate_present_days();" /></td>
+		<td   title="Absent Days"><input type="text" name="txt_absent_days'.$i.'" id="txt_absent_days'.$i.'" size="2" onkeyup="interger_validation();calculate_present_days();" /></td>
+		<td   title="Suspension Days"><input type="text" name="txt_suspension_days'.$i.'" id="txt_suspension_days'.$i.'" size="2"  onkeyup="calculate_present_days();" /></td>
+		<td   title="Encashment Days"><input type="text" name="txt_encashment_days'.$i.'" id="txt_encashment_days'.$i.'" size="2"  onkeyup="calculate_present_days();" disabled="disabled" value="'.$encashment_days.'" /></td>
+		<td   title="Remark"><input type="text" name="txt_remark'.$i.'" id="txt_remark'.$i.'" size="15" /></td></tr>';		
+		
+	}
+	//elese removed
+	$i++;
+
+   }
+  }
+  
+// echo '<tr><td colspan="12"></td></tr>';
+?>
+

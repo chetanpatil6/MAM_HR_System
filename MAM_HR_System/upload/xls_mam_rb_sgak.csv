@@ -1,0 +1,194 @@
+Sr.,Employee Code,Name of Employee ,  Basic , Grade Pay , DA 30% , HRA 20% , CLA , TA , WA , Oth 
+1,2001,Smt. Aasha B. Kalbhor ,8759,1500,,,240,200,60,150
+2,2002,Smt.Janabai M. Banchod ,8272,1500,,,240,200,60, - 
+3,2003,Ms. Vijaya S. Nikam ,7785,1500,,,240,200,60, - 
+4,2004,Ms. Vaishali S. Tupe ,7620,1400,,,240,200,60, - 
+5,2005,Ms. Kamalesh K. Thakur,7621,1400,,,240,200,60, - 
+6,2006,Ms. Sanjivani D. Massy ,7620,1400,,,240,200,60, - 
+7,2007,Ms. Parvati M. Lakade ,7620,1400,,,240,200,60, - 
+8,2008,Ms. Jayashree S. Pawar ,7620,1400,,,240,200,60, - 
+9,2009,Ms. Mandakini  B. Dhavale ,7620,1400,,,240,200,60, - 
+10,2010,Ms. Mangala M. Gayakwad ,7620,1400,,,240,200,60, - 
+11,2011,Ms. Mangala M. Mhaske ,7458,1400,,,240,200,60, - 
+12,2012,Ms. Sharada S. Bansode ,7458,1400,,,240,200,60, - 
+13,2013,Ms. Pushpa B. Sali ,7319,1400,,,240,200,60, - 
+14,2014,Ms. Nanda K. Aavale ,7319,1400,,,240,200,60, - 
+15,2015,Ms. Nalini A. Vairal ,7319,1400,,,240,200,60, - 
+16,2016,Ms. Shaila P. Pethkar ,7180,1400,,,240,200,60,100
+17,2017,Ms. Yasmin A. Khan ,7180,1400,,,240,200,60, - 
+18,2018,Ms.Anuradha D. Jadhav ,7180,1400,,,240,200,60, - 
+19,2019,Ms. Mukta S. Khaire ,7180,1400,,,240,200,60, - 
+20,2020,Ms. Ketki K. Veer ,7180,1400,,,240,200,60,150
+21,200021,Ms. Sangita S. Thombare (Khatal ),7180,1400,,,240,200,60, - 
+22,2022,Ms. Kamal D. Landage (Kokate),7180,1400,,,240,200,60, - 
+23,2023,Ms. Manda B. Jagtap ,7180,1400,,,240,200,60, - 
+24,2024,Ms. Manda B. Shedage,7041,1400,,,240,200,60, - 
+25,2025,Smt. Vandana Palkar ,7041,1400,,,240,200,60, - 
+26,2026,Ms. Mangal H. Kambale ,6763,1400,,,240,200,60, - 
+27,2027,Ms. Kavita D. Pandit,6763,1400,,,240,200,60,100
+28,2028,Smt. Hira K. Pawar ,6763,1400,,,240,200,60, - 
+29,2029,Ms. Meena P. Kanse ,6763,1400,,,240,200,60, - 
+30,2030,Smt. Nilima B. Khire ,6763,1400,,,240,200,60, - 
+31,2031,Ms. Hema S. Ghute ,6621,1300,,,240,200,60, - 
+32,2032,Mrs. Radha Vishnu Sanap,6343,1300,,,240,200,60, - 
+33,2033,Mrs. Husena Gafar Shaikh,6343,1300,,,240,200,60,100
+34,2034,Smt. Kirti Suresh Dorkar,6343,1300,,,240,200,60, - 
+35,2035,Mrs. Krushna Tukaram Kadam,5029,1300,,,240,200,60, - 
+36,2036,Mrs. Kamal Vishnu Dalavi,5029,1300,,,240,200,60, - 
+37,2037,Mrs. Kanchan Vijay Shinde,5029,1300,,,240,200,60,100
+38,2038,Ms. Ratnamala Balu Pethe ,5029,1300,,,240,200,60,100
+39,2039,Ms. Madhavi S. Patharkar,5029,1300,,,240,200,60, - 
+40,2040,Ms. Kamal R. Ghodake,5029,1300,,,240,200,60,100
+41,2041,Ms. Bharati Bharat Lad,5029,1300,,,240,200,60,100
+42,2042,Ms. Arti Ramesh Pille,5029,1300,,,240,200,60, - 
+43,2043,Mrs. Yogita Khandu Pawar ,3273,1300,,,240,200,60,150
+44,2044,Mrs. Minakshi Mallesh Balaki,3273,1300,,,240,200,60,100
+45,2045,Ms. Lajavanti G. Athawal ,8759,1500,,,240,200,60, - 
+46,2046,Ms. Indrayani K. Kambale ,7948,1500,,,240,200,60, - 
+47,2047,Ms. Mira S. Paul ,7785,1500,,,240,200,60, - 
+48,2048,Ms. Manibai N. Makawana ,7621,1400,,,240,200,60, - 
+49,2049,Smt. Kanta R. Chavan ,7458,1400,,,240,200,60, - 
+50,2050,Ms. Nirmala B. Pardeshi ,7458,1400,,,240,200,60, - 
+51,2051,Ms. Manju R. Chaware ,7319,1400,,,240,200,60, - 
+52,2052,Ms. Ragini J. Sarwan ,7319,1400,,,240,200,60, - 
+53,2053,Ms. Kiran R. Bharwase ,7319,1400,,,240,200,60, - 
+54,2054,Ms. Ranjana Kade ,7319,1400,,,240,200,60, - 
+55,2055,Ms. Sarala L. Kandare ,7180,1400,,,240,200,60, - 
+56,2056,Ms. Anita S. Chandalia ,7041,1400,,,240,200,60, - 
+57,2057,Ms. Pramila N. Kagada ,7041,1400,,,240,200,60, - 
+58,2058,Mr. Khandu Kambale ,7041,1400,,,240,200,60,200
+59,2059,Ms. Meena Lot,7041,1400,,,240,200,60, - 
+60,2060,Ms. Monika A. Juman ,7041,1400,,,240,200,60,100
+61,2061,Mrs. Seema A. Chatole ,6621,1300,,,240,200,60, - 
+62,2062,Mrs. Arti V. Bagdi,6621,1300,,,240,200,60, - 
+63,2063,Mrs. Meena S. Farnandis ,6204,1300,,,240,200,60, - 
+64,2064,Mrs. Nisha Sanjay Khatri,6204,1300,,,240,200,60, - 
+65,2065,Ms. Suvarna Suraj Salunke,5029,1300,,,240,200,60,150
+66,2066,Ms. Shanta Rama Gaikwad,5029,1300,,,240,200,60, - 
+67,2067,Ms. Yamuna Nitin Kambale,5029,1300,,,240,200,60, - 
+68,2068,Ms. Meri  Shyamuvel Bhandarkar,5029,1300,,,240,200,60, - 
+69,2069,Mrs. Sangita Prakash Pawar ,3273,1300,,,240,200,60, - 
+70,2070,Mr. Somaji C. Kalbhor ,8922,1500,,,240,200,60, - 
+71,2071,Mr. Pralhad P. Jadhav ,7948,1500,,,240,200,60, - 
+72,2072,Mr. Ratan P. Sanas,7621,1400,,,240,200,60, - 
+73,2073,Mr. Sanjay N. Zakade ,7458,1400,,,240,200,60, - 
+74,2074,Mr. Vijay A. Dhore ,6902,1400,,,240,200,60,150
+75,2075,Mr. Arun M. Gaikwad ,7621,1400,,,240,200,60, - 
+76,2076,Mr. Hiraman D. Patil ,7458,1400,,,240,200,60, - 
+77,2077,Mr. Prakash S. Bagul,6343,1300,,,240,200,60, - 
+78,2078,Mr. Pandhari M. Mane ,7455,1300,,,240,200,60,100
+79,2079,Mr. Khandu S. Pawar,6621,1300,,,240,200,60, - 
+80,2080,Mr. Mahendra B. Girase (Rajput),6621,1300,,,240,200,60, - 
+81,2081,Mr. Rajaram S. Koli,6621,1300,,,240,200,60, - 
+82,2082,Mr. Subhash D. Jadhav,6621,1300,,,240,200,60,100
+83,2083,Mr.Vijaysing B. Girase,6621,1300,,,240,200,60, - 
+84,2084,Mr. Mukesh Dililp Jadhav,6204,1300,,,240,200,60, - 
+85,2085,Mr. Surendra S. Thite,6204,1300,,,240,200,60, - 
+86,2086,Mr. Sharad B. Shedge,4612,1300,,,240,200,60,100
+87,2087,Mr. Ambaji Gajanan Saware ,4612,1300,,,240,200,60, - 
+88,2088,Chandrakant M. Jogdand ,6902,1400,,,240,200, - , - 
+89,2089,Ms. Mandakini K. Chandgude ,12403,2100,,,240,200,60,250
+90,2090,Ms. Shobha K. Pachpande ,11708,2100,,,240,200,60, - 
+91,2091,Ms. Sujata P. Pachpande ,11476,2100,,,240,200,60,250
+92,2092,Ms. Shamim Y. Shaikh ,11245,2100,,,240,200,60, - 
+93,2093,Ms.Mangal T. Bhapkar (Bhosale),10781,2100,,,240,200,60,300
+94,2094,Ms. Urmila Kudale (Nevase ),10086,2100,,,240,200,60,250
+95,2095,Ms. Surekha Santosh Nikam (Gadhave),10086,2100,,,240,200,60,250
+96,2096,Ms. Rupali S. Gaikwad (Gajare),9622,2100,,,240,200,60, - 
+97,2097,Mrs. Uma  S. Dalvi ,9622,2100,,,240,200,60, - 
+98,2098,Ms. Varsha T. Bhalerao (Rikibe ),8927,2100,,,240,200,60, - 
+99,2099,Mrs. Surekha Shankar Nikam (Kolate ),8927,2100,,,240,200,60, - 
+100,2100,Ms. Swati Amol Pawar,8695,2100,,,240,200,60, - 
+101,2101,Ms. Shital P. Sapkal (Mhetre),8695,2100,,,240,200,60, - 
+102,2102,Ms. Maya H. Aambekar (Chaudhary),8695,2100,,,240,200,60, - 
+103,2103,Ms. Rupali L. Jagtap,7873,2100,,,240,200,60, - 
+104,2104,Ms. Hemlata G. Kapare ,7873,2100,,,240,200,60,250
+105,2105,Ms. Asmita V. Hagawane (Doundkar),7873,2100,,,240,200,60, - 
+106,2106,Ms. Rani P. Bhagat (Memane  ),7873,2100,,,240,200,60, - 
+107,2107,Ms. Surekha D. Jadhav,7873,2100,,,240,200,60, - 
+108,2108,Ms. Smita S. Tilekar(Girme) ,7873,2100,,,240,200,60, - 
+109,2109,Ms. Anita S. Raut,7873,2100,,,240,200,60,250
+110,2110,Sujata S.Gaikwad,7002,2000,,,240,200,60, - 
+111,2111,Ms. Rupali V. Ohal,7002,2000,,,240,200,60,250
+112,2112,Ms. Ashwini N. Paigude,7002,2000,,,240,200,60,250
+113,2113,Ms. Sandhya S. Mhatre,6827,2000,,,240,200,60, - 
+114,2114,Ms. Sukhada R. Bhise,6827,2000,,,240,200,60, - 
+115,2115,Ms. Suman A. Kudale,6827,2000,,,240,200,60, - 
+116,2116,Ms. Tejashree G. Bhujbal (Kudale),6827,2000,,,240,200,60,300
+117,2117,Ms. Savita S. Raut,6827,2000,,,240,200,60, - 
+118,2118,Ms. Hasina M. Shaikh (Karjagi),6827,2000,,,240,200,60,250
+119,2119,Ms. Sonali V. Dixit (Mahamuni),6827,2000,,,240,200,60,250
+120,2120,Ms. Ashwini D. Korpad ,6827,2000,,,240,200,60,250
+121,2121,Ms. Varsha R. Koli,6827,2000,,,240,200,60, - 
+122,2122,Nirmala Ashok Gajbhiv,5921,1650,,,240,200,60, - 
+123,2123,Ms. Jayashree H. Tekawade,4618,1500,,,240,200,60,300
+124,2124,Ms. Kavita S. Mohite,4618,1500,,,240,200,60,125
+125,2125,Ms. Anjana M. Girase,4618,1500,,,240,200,60, - 
+126,2126,Ms. Bharati R. Jamadar,4618,1500,,,240,200,60, - 
+127,2127,Ms. Maya Prashant Bhikule,4612,1300,,,240,200,60, - 
+128,2128,Ms. Snehal Laxman Raskar,4612,1300,,,240,200,60, - 
+129,2129,Ms. Vimal A. Jadhav ,14687,2900,,,240,200,60,250
+130,2130,Ms. Sharada A. More ,21000, - ,,,,,,
+131,2131,Ms. Anita R. Shitkal,12251,2800,,,240,200,60,250
+132,2132,Ms. Mehajabin B. Shaikh ,11556,2800,,,240,200,60,250
+133,2133,Ms. Shital S. Sutar ,11208,2800,,,240,200,60,250
+134,2134,Ms. Pankaja K. Bhujbal,11208,2800,,,240,200,60,300
+135,2135,Mrs. Savita S. Katake ,9992,2800,,,240,200,60, - 
+136,2136,Ms. Jasinta John Paul,13642,2800,,,240,200,60,300
+137,2137,Ms. Rabbana A. Jamadar,8067,2000,,,240,200,60, - 
+138,2138,Ms. Seema N. Aadak,8067,2000,,,240,200,60,250
+139,2139,Ms. Sulbha B. Pawar,8067,2000,,,240,200,60,250
+140,2140,Ms. Rupali M. Ombale,6500, - ,,,,,,
+141,2141,Urmila D. Vikhar,6500, - ,,,,,,
+142,2142,Rushali D. Rasal,10000, - ,,,,,,
+143,2143,Shaila V. Dalvi,10000, - ,,,,,,
+144,2144,Sonali B. Tamhane,9000, - ,,,,,,
+145,2145,Mr. Manohar D. Patil,11245,2100,,,240,200,, - 
+146,2146,Ms. Sushma S. Boravake ,9159,2100,,,240,200,, - 
+147,2147,Mr. Ram M. Patil,12635,2100,,,240,200,60,500
+148,2148,Mr. Ashok P. Chaudhari ,12635,2100,,,240,200,60, - 
+149,2149,Mr. Baban L. Reddy,9622,2100,,,240,200,, - 
+150,2150,Ms. Shahida Yunus Patel ,8461,2000,,,240,200,, - 
+151,2151,Mr. Sandeep E. Yadav ,8461,2000,,,240,200,, - 
+152,2152,Ms. Sarika N. Mahajan (Patil) ,8264,2000,,,240,200,, - 
+153,2153,Ms. Sapana H. Nevase (Borate ),9391,2100,,,240,200,, - 
+154,2154,Mrs. Shachi M. Nisal ( Kulkarni ),9391,2100,,,240,200,,100
+155,2155,Mrs. Sangita Y. Saravade ,9391,2100,,,240,200,, - 
+156,2156,Mr. Sanjay L. Kambale ,8927,2100,,,240,200,, - 
+157,2157,Mr. Sambhaji R. Poman,10086,2100,,,240,200,,500
+158,2158,Ms. Swati V. Joshi( Pawar ),8264,2000,,,240,200,, - 
+159,2159,Ms. Lalita M. Patil ,7994,1900,,,240,200,, - 
+160,2160,Mr. Prakash N. Pethkar ,9585,2000,,,240,200,, - 
+161,2161,Mr. Santosh V. Gandigude ,7621,1400,,,240,200,60, - 
+162,2162,Ms. Sangita G. Hole (Boravake ),7473,1900,,,240,200,, - 
+163,2163,Mrs. Jayashri Suraj Thite,7473,1900,,,240,200,, - 
+164,2164,Ms. Rohini S. Dhavale ,7473,1900,,,240,200,, - 
+165,2165,Mr. Gajanan J. Tayade ,7647,1900,,,240,200,, - 
+166,2166,Ms. Sarita Sunil Shintre ,8168,1900,,,240,200,, - 
+167,2167,Mr. Yunus M. Shaikh ,7821,1900,,,240,200,, - 
+168,2168,Ms. Manisha P. Memane,6000, - ,,,,,,
+169,2169,Sarika N. Shinde,6500, - ,,,,,,
+170,2170,Pranjali D.Lonkar,6500, - ,,,,,,
+171,2171,Shilpa S.Hagwane,6500, - ,,,,,,
+172,2172,Mr. Anil S. Gujar ,37400,10000,,,240,1600,, - 
+173,2173,Mr. Nagnath G. Tekale ,21550, - ,,, - , - ,, - 
+174,2174,Mr. Bhagwan J. Chaudhari ,19376,4700,,,240,800,,500
+175,2175,Mr. Raghunath B. Chaudhary ,17986,4700,,,240,800,,800
+176,2176,Mr. Madhav B. Padwal ,15315,4500,,,240,800,,500
+177,2177,Dr. Sandeep K. Nevase,7391,2100,,,240,200,, - 
+178,2178,Dr. Savita K. Aagawane ,15785,4300,,,240,200,, - 
+179,2179,Dr. Pradnya P. Sambhus ,16876,4600,,,240,200,, - 
+180,2180,Dr. Chandrashekhar U. Mahajan,18360,6000,,,240,1600,, - 
+181,2181,Dr. Arun R. Pandav,13410,2800,,,240,200,, - 
+182,2182,Dr. Ashwini Biradar ,11929,2800,,,240,200,, - 
+183,2183,Dr. Sachin . Mahajan,11250,2600,,,240,200,, - 
+184,2184,Dr.Rahul S. Khandage,11250,2600,,,240,200,, - 
+185,2185,Dr. Pandurang .N. Shinde ,10000, - ,,,,,,
+186,2186,Mr. Sandip Bhalerao,7500, - ,,,,,,
+187,2187,Dr. Dipak Laddha,11000, - ,,,,,,
+188,2188,Dr. Yogesh S. Prabhune,10125,2800,,,240,200,,
+189,2189,Dr.Smita S. Gade,7200,2100,,,240,200,,
+190,2190,Dr. Rahul D. Sasane,10300, - ,,,,,,
+191,2191,Dr.Sonam R. Waqchaure,9000, - ,,,,,,
+192,2192,Dr. Vaishanvi V. Kamble,8000, - ,,,,,,
+193,2193,Dr. Tejashri Mane,8000, - ,,,,,,

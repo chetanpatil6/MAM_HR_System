@@ -1,0 +1,20 @@
+1. Check the Add month control system
+2. Acc. to that change the Dearness allowance of the month
+3. check the Payment receipt change.
+4. Add the table and check the whole procedure. 
+5. Save the month .Check the payment according to the Each employee
+   Dearness allowance. 
+
+month_control 
+
+
+payroll_details 
+emp_no / month_no/comp_code 
+$r3[comp_name] - 336
+
+emp_code:v9220
+employee_no :33
+
+eligiable_amt,computed_amt,adj_amt
+
+controller/payroll_process.php line no 202

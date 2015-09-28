@@ -1,0 +1,656 @@
+<?php
+error_reporting(E_ALL);
+
+//date_default_timezone_set('Europe/London');
+
+/** PHPExcel */
+require_once '../Classes/PHPExcel.php';
+
+$objPHPExcel = new PHPExcel();
+
+$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
+							 ->setLastModifiedBy("Maarten Balliauw")
+							 ->setTitle("Office 2007 XLSX Test Document")
+							 ->setSubject("Office 2007 XLSX Test Document")
+							 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+							 ->setKeywords("office 2007 openxml php")
+							 ->setCategory("Test result file");
+
+// Add some data
+
+
+
+$arr_dbname = array();
+if (file_exists("connection.xml")) 
+{
+$xml = simplexml_load_file("connection.xml");
+}
+else if(file_exists("model/connection.xml")) 
+{
+$xml = simplexml_load_file("model/connection.xml");
+}
+else if(file_exists("../model/connection.xml")) 
+{
+$xml = simplexml_load_file("../model/connection.xml");
+}
+else
+{
+  echo "Failed to open XML";
+  exit(0);
+}
+
+
+$arr_company = array();
+
+foreach($xml->children() as $child1)
+{   
+  foreach($child1->children() as $child)
+  {  
+   $name = $child->getName();
+   if($name == 'dbname')
+   {
+   		array_push($arr_dbname, $child);
+   }
+  }
+}
+$len_arr = sizeof($arr_dbname);
+
+
+$servername = $_POST['txt_s'];
+$usernm = $_POST['txt_u'];
+$pas = $_POST['txt_p'];
+$current_db_name = $_POST['txt_db'];
+
+$month_no = $_POST['cmb_pf_collective_month'];
+$company_name = $_POST['cmb_company'];
+
+if($company_name == 'maharashtra_arogya_mandal')
+{
+  $code = 'G2';
+}
+else
+{
+  $code = 'G1';
+}	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+$arr_a1 = array();
+$arr_a2 = array();
+$arr_a3 = array();
+$arr_a4 = array();
+$arr_a5 = array();
+$arr_total = array();
+$arr_company_name = array();
+$arr_total_basic_da = array();
+$i = 1;
+	$sr_no = 1;
+
+	$basic_total1 = 0;
+	$da_total1 = 0;
+	$total_of_total1 = 0;
+	$pf_total1 = 0;
+	$a_total1 = 0;
+	$b_total1 = 0;
+	$c_total1 = 0;
+	$other_total1 = 0;
+	$total_grand1 = 0;
+
+
+
+	
+$sr_no_array = array();
+$pf_number_array = array();
+$emp_name_array = array();
+$basic_array = array();
+$da_array = array();
+$total_basic_da_array = array();
+$total_other_array = array();
+$grand_total_array = array();
+$pf_array = array();
+$a_array = array();
+$b_array = array();
+$c_array = array();
+
+
+$emp_no_array = array();
+$company_name_array = array();
+$designation_array = array();
+$pf_num_array = array();
+$month_array = array();
+
+
+
+mysql_connect("$servername", "$usernm", "$pas") or die("unable to connect server");
+mysql_select_db("$company_name");
+
+$sq_company_name = mysql_query("select * from company_info");
+while($row_company_info = mysql_fetch_assoc($sq_company_name))
+{
+$row_company_info['name'] = str_replace('12345', ' ', $row_company_info['name']);
+$unit_name = $row_company_info['name'];
+$company_address_address = $row_company_info['address1']." ".$row_company_info['address2']." ".$row_company_info['address3']." ".$row_company_info['address4'].", ".$row_company_info['city']." ".$row_company_info['pin_code'];
+}
+
+$objPHPExcel->setActiveSheetIndex(0)	
+            ->setCellValue("D1",$unit_name);			
+$objPHPExcel->getActiveSheet()->mergeCells('D1:F1');
+$objPHPExcel->getActiveSheet()->getStyle('D1:F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+$objPHPExcel->getActiveSheet()->getStyle('D1')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('E1')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('G1')->getFont()->setBold(true);
+
+$objPHPExcel->setActiveSheetIndex(0)	
+            ->setCellValue("C2",$company_address_address)
+			->setCellValue("G2",$month_no);			
+$objPHPExcel->getActiveSheet()->mergeCells('C2:F2');
+$objPHPExcel->getActiveSheet()->getStyle('C2:F2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+$objPHPExcel->getActiveSheet()->getStyle('C2')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('D2')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('E2')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('F2')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('G2')->getFont()->setBold(true);
+
+
+
+
+
+
+
+
+$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue("A4", "Sr. No.")
+			->setCellValue("B4", "Account No.")
+			->setCellValue("C4", "Name of Employee")
+			->setCellValue("D4", "Basic")
+			->setCellValue("E4", "DA")
+			->setCellValue("F4", "Total")
+			->setCellValue("G4", "HRA+Other")
+			->setCellValue("H4", "Grand Total")
+			->setCellValue("I4", "Employee Single Share")
+			->setCellValue("J4", "15.67% A")
+			->setCellValue("K4", "8.33% B")
+			->setCellValue("L4", "24% (A+B)");
+		
+		$i = 2;	 
+$objPHPExcel->getActiveSheet()->getStyle('A4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('B4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('C4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('D4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('E4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('F4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('G4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('H4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('I4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('J4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('K4')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('L4')->getFont()->setBold(true);
+
+for($arr=0;$arr<$len_arr;$arr++)
+{
+
+
+$db1 = $arr_dbname[$arr];
+
+
+
+mysql_connect("$servername", "$usernm", "$pas") or die("unable to connect server");
+if(mysql_select_db("$db1"))
+{
+//$i++;
+
+$sq_name = mysql_query("select * from company_info");
+while($row_info = mysql_fetch_assoc($sq_name))
+{
+$row_info['name'] = str_replace('12345', ' ', $row_info['name']);
+$str_address = $row_info['name']." \n".$row_info['address1']." ".$row_info['address2']." ".$row_info['address3']." ".$row_info['address4'].", ".$row_info['city']." ".$row_info['pin_code'];
+
+array_push($arr_company_name, $row_info['name']);
+}
+
+
+//$i = $i + 2;
+ 
+
+
+
+//$i = $i + 2;
+
+	
+	$basic_total = 0;
+	$da_total = 0;
+	$total_of_total = 0;
+	$pf_total = 0;
+	$a_total = 0;
+	$b_total = 0;
+	$c_total = 0;
+	$other_total = 0;
+	$total_grand = 0;
+
+$sq_payroll_dtls = mysql_query("select distinct payroll_details.employee_no from payroll_details,comp_details where payroll_details.month_no='$month_no' and comp_details.type_of_sep='' and comp_details.pf_number!='' order by comp_details.pf_number ASC");
+while($r_payroll_details = mysql_fetch_assoc($sq_payroll_dtls))
+{
+  $employee_no = $r_payroll_details['employee_no'];
+ // echo $employee_no."<br />";
+  $sq_pf_no = mysql_query("select SUBSTRING(pf_number, 1, 2) as pfsubstr from comp_details where employee_no='$employee_no' order by pf_number");
+  $r_pf_no = mysql_fetch_assoc($sq_pf_no);
+  
+  //echo $r_pf_no['pfsubstr']."<br />";
+  
+  if($code == $r_pf_no['pfsubstr'])
+  {
+  //echo "here";
+  $total_basic = 0;
+  $da = 0;
+  
+
+  $pf_number = '';
+  
+  $sq_employment_dtls = mysql_query("select pf_number,designation from comp_details where employee_no='$employee_no' order by pf_number");
+  while($r_employment_dtls = mysql_fetch_assoc($sq_employment_dtls))
+  {
+	  if($r_employment_dtls['pf_number'] != '')
+	  {
+		$pf_number = substr($r_employment_dtls['pf_number'], 2);
+		array_push($designation_array,$r_employment_dtls['designation']);
+		array_push($pf_num_array,$r_employment_dtls['pf_number']);
+	  }
+  }
+  
+  $res_cmpy_name = mysql_fetch_assoc(mysql_query("select name from company_info"));
+  
+  //$row_info['name'] = str_replace('12345', ' ', $row_info['name']);
+  array_push($company_name_array, $res_cmpy_name['name']);
+  
+ 	$sq_emp = mysql_query("select first_name,middle_name,last_name,employee_no from empl_master where employee_no='$employee_no'");
+	  while($r_emp = mysql_fetch_assoc($sq_emp))
+	  {
+		  $emp_name = $r_emp['first_name']." ".$r_emp['middle_name']." ".$r_emp['last_name'];
+		  array_push($emp_no_array,$r_emp['employee_no']);
+	  }
+  
+  $sq_basic = mysql_query("select paid_amt from payroll_details where month_no='$month_no' and employee_no='$employee_no' and comp_code='E0001'");
+  while($r_basic = mysql_fetch_assoc($sq_basic))
+  {
+     $total_basic = $total_basic + $r_basic['paid_amt'];
+	 $tb = $total_basic;
+  }
+  
+  $sq_grade = mysql_query("select paid_amt from payroll_details where month_no='$month_no' and employee_no='$employee_no' and comp_code='E0002'");
+  while($r_grade = mysql_fetch_assoc($sq_grade))
+  {
+     $total_basic = $total_basic + $r_grade['paid_amt'];
+	 $tb = $total_basic;
+  }
+  
+  $sq_da = mysql_query("select paid_amt from payroll_details where month_no='$month_no' and employee_no='$employee_no' and comp_code='E0003'");
+  while($r_da = mysql_fetch_assoc($sq_da))
+  {
+     $total_basic = $total_basic + $r_da['paid_amt'];
+	 $da_inpayslip = $r_da['paid_amt'];
+  }
+  
+  $total_basic = round($total_basic, 0);
+  //$total_basic = $total_basic;
+  if($total_basic > 6500)
+  {
+    $basic = 6500;           /////////////////////////////////////////////// basic
+	$da = 0;               /////////////////////////////////////////////// DA
+  }
+  else
+  {
+  //  $basic = $total_basic;           /////////////////////////////////////////////// basic
+    $basic = $tb;           /////////////////////////////////////////////// basic
+	$da = round($da_inpayslip, 0);            /////////////////////////////////////////////// DA
+	//$da = $da_inpayslip;            /////////////////////////////////////////////// DA
+  }
+  
+  $total_basic_da = $basic + $da; /////////////////////////////////////////////////////////////  Total
+  
+  
+  
+  $total_other = 0;
+
+  
+  $sq_others = mysql_query("select paid_amt from payroll_details where month_no='$month_no' and employee_no='$employee_no' and comp_code LIKE 'E%'");
+  while($r_others = mysql_fetch_assoc($sq_others))
+  {
+    $total_other = $total_other + $r_others['paid_amt'];
+  }
+  
+      $total_other = round($total_other, 0);
+      //$total_other = $total_other;
+  
+ // $grand_total = $total_basic_da + $total_other; ///////////////////////////////////////////////////////// Grand Total
+ 
+  $total_other = $total_other - $total_basic_da; ///////////////////////////////////////////////////////// Total other
+  
+  $grand_total = $total_basic_da + $total_other; ///////////////////////////////////////////////////////// Grand Total
+
+  
+  $pf = 0;
+  $sq_pf = mysql_query("select * from payroll_details where month_no='$month_no' and employee_no='$employee_no' and comp_code='D0001'");
+  while($r_pf = mysql_fetch_assoc($sq_pf))
+  {
+      $pf = round($r_pf['paid_amt'], 0);
+      //$pf = $r_pf['paid_amt'];
+  }
+  
+  
+  $a = $total_basic_da*15.67/100;
+  $a = round($a, 0); ///////////////////////////////////////////////////////////////////////////// 15.67%
+  
+  
+  $b = $total_basic_da*8.33/100;
+  $b = round($b, 0); ///////////////////////////////////////////////////////////////////////////// 8.33%
+  //$b = $b;
+
+  $c = $a + $b; ////////////////////////////////////////////////////////////////////////////////// 24%
+  
+    $emp_share_double = $pf * 2;
+	if($emp_share_double != $c)
+	{
+		$c = $emp_share_double;
+		$a = $c - $b;
+	}
+  if($grand_total!=0)
+  { 
+ 			
+ /*$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue("A".$i, $sr_no)
+			->setCellValue("B".$i, $pf_number)
+			->setCellValue("C".$i, $emp_name)
+			->setCellValue("D".$i, $basic)
+			->setCellValue("E".$i, $da)
+			->setCellValue("F".$i, $total_basic_da)
+			->setCellValue("G".$i, $total_other)
+			->setCellValue("H".$i, $grand_total)
+			->setCellValue("I".$i, $pf)
+			->setCellValue("J".$i, $a)
+			->setCellValue("K".$i, $b)
+			->setCellValue("L".$i, $c);*/
+			
+			array_push($sr_no_array,$sr_no);
+			array_push($pf_number_array,$pf_number);
+			array_push($emp_name_array,$emp_name);
+			array_push($basic_array,$basic);
+			array_push($da_array,$da);
+			array_push($total_basic_da_array,$total_basic_da);
+			array_push($total_other_array,$total_other);
+			array_push($grand_total_array,$grand_total);
+			array_push($pf_array,$pf);
+			array_push($a_array,$a);
+			array_push($b_array,$b);
+			array_push($c_array,$c);
+
+			$i = $i + 1;
+			$sr_no = $sr_no + 1;
+			
+			
+			
+  }
+	
+	
+	$basic_total = $basic_total + $basic;
+	$basic_total1 = $basic_total1 + $basic;
+	$da_total = $da_total + $da;
+	$da_total1 = $da_total1 + $da;
+	$total_of_total = $total_of_total + $total_basic_da;
+	$total_of_total1 = $total_of_total1 + $total_basic_da;
+	$other_total = $other_total + $total_other;
+	$other_total1 = $other_total1 + $total_other;
+	$total_grand = $total_grand + $grand_total;
+	$total_grand1 = $total_grand1 + $grand_total;
+	$pf_total = $pf_total + $pf;
+	$pf_total1 = $pf_total1 + $pf;
+	$a_total = $a_total + $a;
+	$a_total1 = $a_total1 + $a;
+	$b_total = $b_total + $b;
+	$b_total1 = $b_total1 + $b;
+	$c_total = $c_total + $c;
+	$c_total1 = $c_total1 + $c;
+	
+	
+	$basic = 0;
+	$da = 0;
+	$grand_total = 0;
+	$pf = 0;
+	$a = 0;
+	$b = 0;
+	$c = 0;
+}
+}
+
+
+
+
+
+
+	
+array_push($arr_total_basic_da, $total_of_total);
+
+
+$a1 = $a_total;
+$a2 = $total_of_total * 0.0110;
+$a2 = round($a2, 0);
+//$a2 = $a2;
+$a3 = $b_total;
+$a4 = $total_of_total * 0.005;
+$a4 = round($a4, 0);
+//$a4 = $a4;
+$a5 = $total_of_total * 0.0001;
+$a5 = round($a5, 0);
+//$a5 = $a5;
+$total = $a1 + $a2 + $a3 + $a4 + $a5;
+
+
+
+array_push($arr_a1, $a1);
+array_push($arr_a2, $a2);
+array_push($arr_a3, $a3);
+array_push($arr_a4, $a4);
+array_push($arr_a5, $a5);
+array_push($arr_total, $total);
+
+
+}		
+
+}
+
+
+mysql_connect("$servername", "$usernm", "$pas") or die("unable to connect server");
+mysql_select_db("$current_db_name") or die("unable to connect db");
+mysql_query("delete from pf_collective_report_sorted");
+for($k=0;$k<sizeof($sr_no_array);$k++)
+{
+
+	//mysql_query("INSERT INTO pf_collective_report_sorted VALUES ('$sr_no_array[$k]', '$pf_number_array[$k]', '$emp_no_array[$k]', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1')");
+	/*$emp_share_double = $pf_array[$k] * 2;
+	if($emp_share_double != $c_array[$k])
+	{
+		$c_array[$k] = $emp_share_double;
+		$a_array[$k] = $c_array[$k] - $b_array[$k];
+	}
+	*/
+		mysql_query("INSERT INTO pf_collective_report_sorted VALUES ('$sr_no_array[$k]', '$pf_number_array[$k]', '$emp_no_array[$k]', '$emp_name_array[$k]', '$basic_array[$k]', '$da_array[$k]', '$total_basic_da_array[$k]', '$total_other_array[$k]', '$grand_total_array[$k]', '$pf_array[$k]', '$a_array[$k]', '$b_array[$k]', '$c_array[$k]', '$company_name_array[$k]', '$designation_array[$k]', '$pf_num_array[$k]', '$month_no')");
+
+}
+$sq_pf_collective = mysql_query("select * from pf_collective_report_sorted order by account_no");
+$temp = 5;
+$temp1 = 1;
+while($res_pf = mysql_fetch_assoc($sq_pf_collective))
+{
+
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue("A".$temp, $temp1)
+				->setCellValue("B".$temp, $res_pf['account_no'])
+				->setCellValue("C".$temp, $res_pf['name_of_employee'])
+				->setCellValue("D".$temp, $res_pf['basic'])
+				->setCellValue("E".$temp, $res_pf['da'])
+				->setCellValue("F".$temp, $res_pf['total'])
+				->setCellValue("G".$temp, $res_pf['hra_other'])
+				->setCellValue("H".$temp, $res_pf['grand_total'])
+				->setCellValue("I".$temp, $res_pf['employee_single_share'])
+				->setCellValue("J".$temp, $res_pf['15_67_per_a'])
+				->setCellValue("K".$temp, $res_pf['8_33_per_b'])
+				->setCellValue("L".$temp, $res_pf['24_a_and_b']);
+				$temp++;
+				$temp1++;
+}
+
+//mysql_query("delete from pf_collective_report_sorted");
+
+$i = $temp;
+$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue("C".$i, "Total"); 
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue("D".$i, $basic_total1)
+			->setCellValue("E".$i, $da_total1)
+			->setCellValue("F".$i, $total_of_total1)
+			->setCellValue("G".$i, $other_total1)
+			->setCellValue("H".$i, $total_grand1)
+			->setCellValue("I".$i, $pf_total1)
+			->setCellValue("J".$i, $a_total1)
+			->setCellValue("K".$i, $b_total1)
+			->setCellValue("L".$i, $c_total1);
+$objPHPExcel->getActiveSheet()->getStyle("C".$i)->getFont()->setBold(true);		
+$objPHPExcel->getActiveSheet()->getStyle("D".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("E".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("F".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("G".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("H".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("I".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("J".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("K".$i)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("L".$i)->getFont()->setBold(true);
+			
+
+//////////////////////////////////////////////////////////code for summary//////////////////////////////////////////////////////////////////////////////////////
+$i = $i + 3;
+$alphabet = 'B';
+$arr_val = array("No.", 1, 2, 10, 21, 22, "Total");
+
+$m = $i;
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue("A".$m, "No.")
+			->setCellValue("A".($m+1), "1 :")
+			->setCellValue("A".($m+2), "2 :")
+			->setCellValue("A".($m+3), "10 :")
+			->setCellValue("A".($m+4), "21 :")
+			->setCellValue("A".($m+5), "22 :")
+			->setCellValue("A".($m+6), "Total");
+
+			
+$objPHPExcel->getActiveSheet()->getStyle("A".$m)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+1))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+2))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+3))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+4))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+5))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+6))->getFont()->setBold(true);
+
+
+$arr_a1_tot = 0;
+$arr_a2_tot = 0;
+$arr_a3_tot = 0;
+$arr_a4_tot = 0;
+$arr_a5_tot = 0;
+$arr_total_tot = 0;			
+
+mysql_query("delete from pf_collective_report_summary");
+for($arr=0;$arr<sizeof($arr_company_name);$arr++)
+{
+  $m = $i;
+  $objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($alphabet.$m, $arr_company_name[$arr])
+			->setCellValue($alphabet.($m+1), $arr_a1[$arr])
+			->setCellValue($alphabet.($m+2), $arr_a2[$arr])
+			->setCellValue($alphabet.($m+3), $arr_a3[$arr])
+			->setCellValue($alphabet.($m+4), $arr_a4[$arr])
+			->setCellValue($alphabet.($m+5), $arr_a5[$arr])
+			->setCellValue($alphabet.($m+6), $arr_total[$arr]);
+			mysql_query("insert into pf_collective_report_summary values('$arr_company_name[$arr]','$arr_a1[$arr]','$arr_a2[$arr]','$arr_a3[$arr]','$arr_a4[$arr]','$arr_a5[$arr]')");
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.$m)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.($m+6))->getFont()->setBold(true);
+
+$arr_a1_tot = $arr_a1_tot + $arr_a1[$arr];
+$arr_a2_tot = $arr_a2_tot + $arr_a2[$arr];
+$arr_a3_tot = $arr_a3_tot + $arr_a3[$arr];
+$arr_a4_tot = $arr_a4_tot + $arr_a4[$arr];
+$arr_a5_tot = $arr_a5_tot + $arr_a5[$arr];
+$arr_total_tot = $arr_total_tot + $arr_total[$arr];
+$alphabet++;		
+}
+			
+$m = $i;
+
+  $objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($alphabet.$m, "Total")
+			->setCellValue($alphabet.($m+1), $arr_a1_tot)
+			->setCellValue($alphabet.($m+2), $arr_a2_tot)
+			->setCellValue($alphabet.($m+3), $arr_a3_tot)
+			->setCellValue($alphabet.($m+4), $arr_a4_tot)
+			->setCellValue($alphabet.($m+5), $arr_a5_tot)
+			->setCellValue($alphabet.($m+6), $arr_total_tot);
+			
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.$m)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.($m+1))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.($m+2))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.($m+3))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.($m+4))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.($m+5))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle($alphabet.($m+6))->getFont()->setBold(true);
+
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue("A".($m+7), "Pay  : ")
+			->setCellValue("A".($m+8), "P.F. :")
+			->setCellValue("A".($m+9), "F. P :");
+			
+$alphabet = "B";
+
+for($arr=0;$arr<sizeof($arr_company_name);$arr++)
+{
+  $m = $i;
+  $objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($alphabet.($m+7), $arr_total_basic_da[$arr])
+			->setCellValue($alphabet.($m+8), $arr_a1[$arr])
+			->setCellValue($alphabet.($m+9), $arr_a3[$arr]);
+  $alphabet++;
+}
+
+			
+$objPHPExcel->getActiveSheet()->getStyle("A".$m)->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+1))->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("A".($m+2))->getFont()->setBold(true);
+
+
+
+$objPHPExcel->getActiveSheet()->setTitle('PF Report');
+
+// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+$objPHPExcel->setActiveSheetIndex(0);
+
+
+// Save Excel 2007 file
+
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
+
+
+// Echo memory peak usage
+
+
+header('Content-type: text/plain');
+//open/save dialog box
+header('Content-Disposition: attachment; filename="pf_collective_report.xlsx"');
+//read from server and write to buffer
+readfile("pf_collective_report.xlsx");
+// Echo memory peak usage
+echo date('H:i:s') . "Done writing file.\r\n";
+
+
+
+?>
