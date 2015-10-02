@@ -662,6 +662,7 @@ if($query)
 }
 ?>
 <li><a href="change_password.php"><span class="l"></span><span class="r"></span><span class="t">Change Password</span></a></li>					
+<li><a href="add_dearness_allowance.php"><span class="l"></span><span class="r"></span><span class="t">Add DearNess Allowance</span></a></li>					
                 	</ul>
                 </div>
                 <div class="art-contentLayout">

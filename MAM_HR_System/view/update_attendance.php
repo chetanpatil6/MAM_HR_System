@@ -388,12 +388,18 @@ xmlhttp.send();
 <td><label>Select Employee Name:</label></td>
 										<td> <select id="cmb_emp_name" name="cmb_emp_name" onchange="employee_filter()">
 										<option value="All" selected="selected">All</option>
-										<?php
+										<?php $count='';
 										 $sql_emp_name=mysql_query("select first_name,middle_name,last_name,employee_no from empl_master");
 										 
 										 while($r_emp_name=mysql_fetch_assoc($sql_emp_name)){
 										  $trimmed_first_name = explode(" ", $r_emp_name['first_name']);
+
+										     //echo "<option value='$r_emp_name[employee_no]'>$r_emp_name[last_name] $trimmed_first_name[1] $r_emp_name[middle_name]</option>";
+										  if(isset($trimmed_first_name[1]))
 										     echo "<option value='$r_emp_name[employee_no]'>$r_emp_name[last_name] $trimmed_first_name[1] $r_emp_name[middle_name]</option>";
+										 else
+											 echo "<option value='$r_emp_name[employee_no]'>$r_emp_name[last_name] $r_emp_name[middle_name]</option>";
+
 											 $count++;
 										 }											 								 
 										?>

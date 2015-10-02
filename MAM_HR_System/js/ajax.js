@@ -982,13 +982,11 @@ $.post('../controller/add_user_role.php',{'emp_no[]':emp_no,'role[]':role}, func
 }
 
 //Inset User 
-function add_user(){
-	
+function add_user(){	
 	
 	
       var table = document.getElementById('dataTable');
       var rowCount = table.rows.length;
-		
 	    
 		var emp_no = new Array();
 		var password = new Array();
@@ -997,7 +995,6 @@ function add_user(){
 		
 	           for(var i=0; i<rowCount; i++) {
                 var row = table.rows[i];
-	   
 	 
 				var txtBox1 = row.cells[2].childNodes[0].value;
 				var txtBox2 = row.cells[3].childNodes[0].value;
@@ -1007,14 +1004,39 @@ function add_user(){
 				  password.push(txtBox2);
 				  role.push(txtBox3);
 
-
 				}
 	   
 $.post('../controller/add_user.php',{'emp_no[]':emp_no,'password[]':password,'role[]':role}, function(data){
 				$('#error').text(data);
 });
+
 }
 
+function add_new_dearness_allowance(){	
+	
+	  var table = document.getElementById('dataTable');
+      var rowCount = table.rows.length;
+	    
+		var emp_no = new Array();
+		var password = new Array();
+				
+	           for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+	 
+				var txtBox1 = row.cells[2].childNodes[0].value;
+				var txtBox2 = row.cells[3].childNodes[0].value;
+	    	              
+				  emp_no.push(txtBox1);
+				  password.push(txtBox2);
+				  
+
+				}
+	   
+$.post('../controller/add_dearness_allowance.php',{'emp_no[]':emp_no,'password[]':password}, function(data){
+				$('#error').text(data);
+});
+
+}
 
 
 function changepassword(){

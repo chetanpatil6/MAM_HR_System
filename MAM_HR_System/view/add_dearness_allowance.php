@@ -177,10 +177,10 @@ row.cells[1].childNodes[0].value = foo.counter;
 								 <center><table width="900" border="1">
 <tr><td colspan="15">
  
-<tr><td width="65"><b><center>Sr No.</center></b></td><td width="335"><b><center>Employee ID</center></b></td><td width="200" colspan="2"><b><center>Dearness Allowance</center></b></td></tr>
+<tr><td width="65"><b><center>Sr No.</center></b></td><td width="385"><b>Employee ID</b></td><td width="200" colspan="2"><b>Dearness Allowance</b></td></tr>
 </table>
 <table width="900" id="dataTable" border="1"><tr><TD width="5"><INPUT type="checkbox" name="chk[]"/></TD><td width="10"><input type="text" name="txt_sir_no" id="txt_sir_no" size="1" value="1" disabled="disabled" /></td>
-<td width="800"><select name="txt_emp_id" id="txt_emp_id" style="width:170px"><option>Select</option>
+<td width="400"><select name="txt_emp_id" id="txt_emp_id" style="width:170px"><option>Select</option>
 <?php
 
 $sql= "select * from empl_master";
@@ -194,7 +194,7 @@ while($row = mysql_fetch_array($result))
 
 </select>
 </td>
-<td width="335"><input type="text" name="txt_password" id="txt_password" />
+<td width="435"><input type="text" name="txt_password" id="txt_password" />
 </td>
 <td>
 <!-- <select name="txt_role" id="txt_role" style="width:270px" ><option selected="selected"></option><option>Admin</option><option>SuperUser</option><option>ViewOnly</option><option>LMUser</option></select> -->

@@ -52,7 +52,7 @@ foreach($xml->children() as $child)
   mysql_connect($server, $uname, $password);
   $dbname = "$con[3]";
   $_SESSION['dbname'] = $dbname;
-  echo "$dbname";
+//  echo "$dbname";
   mysql_select_db($dbname) or die("Unable to connect db");
   //echo $child->getName() . ": " . $child . "<br />";
   }
@@ -642,7 +642,7 @@ public function update_education_info($emp_no,$sr_no, $degree_title, $subject, $
 	
 	/*  Add New Dear Ness Allowance updted on 28-9-2015 */
 	public function add_new_dearness_allowance($emp_no, $password){
-
+       
 	if($emp_no!=''  ) 
 	{
 	$count = sizeof($emp_no);
@@ -654,23 +654,40 @@ public function update_education_info($emp_no,$sr_no, $degree_title, $subject, $
 			 exit(0); 
 			}
 	}
+	
 	$count = sizeof($emp_no);
 	
+	$dup_user= false;
 	for($s=0;$s<$count;$s++){
 			if($emp_no[$s]!=''){
-			 			
-			 $sq = mysql_query("insert into new_dearness_allowance values ('$emp_no[$s]','$password[$s]')");
+			 		
+					$select_userq = mysql_query("select * from new_dearness_allowance where employee_no ='$emp_no[$s]'");
+					if($row = mysql_fetch_assoc($select_userq))
+					{
+						
+						 $sq = "update new_dearness_allowance set dearness_allowance ='$password[$s]' where employee_no ='$emp_no[$s]'";
+							 $res = $this->query($sq);
+							 $dup_user= true;
+					}else{
+                        $sq = mysql_query("insert into new_dearness_allowance (employee_no,dearness_allowance) values ('$emp_no[$s]','$password[$s]')");
+                        
+					}
+			 		
 			}
 	}
-	 
+
+
 	 if(!$sq)
 	 {
-	 $value = FALSE;
-	echo "Duplicate User";
-	}
-      ELSE
-	  {	  
-	  echo "User added successfully!!!";
+	   $value = FALSE;
+	   echo "Duplicate User";
+	 }ELSE{	
+		   if($dup_user==true){
+		   	   echo "New Dearnesss allowance updated successfully!!!";
+
+		   }else{  
+		       echo "New Dearnesss allowance added successfully!!!";
+		   }
 	   $value = TRUE;
 	   RETURN $value;
 	  }
