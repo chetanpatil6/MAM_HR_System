@@ -688,6 +688,8 @@ else
 	// $sq_dpt = mysql_query("select * from emp_comp_master_lines where employee_no='$r[employee_no]' and comp_code='D0002'");
 	 // while($r_dpt = mysql_fetch_assoc($sq_dpt))
 	 // {
+	
+	
 	$sq_employment_details = mysql_query("select pf_number, prof_tax_applicable from comp_details where employee_no='$r[employee_no]'");
 	while($r_employment_details = mysql_fetch_assoc($sq_employment_details))
 	{
@@ -705,7 +707,17 @@ else
 			//if($pt_amt >= 5001 && $pt_amt <= 10000)
 			if($pt_amt >= 7501 && $pt_amt <= 10000)
 			{
-				$tot_pt = 175;
+				/* Updated on the 5th Sep 2015 : Female employee not put professional Tax who has below or equal to 10000 rs salary */
+				 $sq_empl_details = mysql_query("select gender from empl_master where employee_no='$r[employee_no]'");
+				 $r_emp_details = mysql_fetch_assoc($sq_empl_details);
+				 $emp_gender = $r_emp_details['gender'];
+				if($emp_gender=='Female' || $emp_gender == 'F'){
+				   $tot_pt = 0;
+					//$tot_pt = 175;
+				}else{
+
+				   $tot_pt = 175;
+			    }
 			}
 			else if($pt_amt >= 10001)
 			{
